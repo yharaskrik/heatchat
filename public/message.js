@@ -17,7 +17,27 @@ window.onload = function() {
     var textInput = document.querySelector('#message_input');
     var postButton = document.querySelector('#send_message');
 
-    postButton.addEventListener("click", function () {
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            fbuser = user;
+            console.log(user);
+        }
+        else {
+            fbuser = null;
+        }
+    });
+
+    firebase.auth().signInAnonymously().catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+
+        // ...
+    });
+
+    postButton.addEventListener("click", function sendMessage () {
         var msgText = textInput.value;
         console.log(msgText);
         getLocation();
@@ -76,27 +96,6 @@ window.onload = function() {
             });
 
         }
-        var chatWindow = document.getElementById('chat_window');
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-    });
-
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            fbuser = user;
-            console.log(user);
-        }
-        else {
-            fbuser = null;
-        }
-    });
-
-    firebase.auth().signInAnonymously().catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorMessage);
-
-        // ...
     });
 
     function getLocation() {
