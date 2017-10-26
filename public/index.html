@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase Chat</title>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="chat_window"><div class="top_menu"><div class="buttons"><div class="button close"></div><div class="button minimize"></div><div class="button maximize"></div></div><div class="title">Chat</div></div><ul class="messages"></ul><div class="bottom_wrapper clearfix"><div class="message_input_wrapper"><input class="message_input" placeholder="Type your message here..." /></div><div class="send_message"><div class="icon"></div><div class="text">Send</div></div></div></div><div class="message_template"><li class="message"><div class="avatar"></div><div class="text_wrapper"><div class="text"></div></div></li></div>
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCEEGAf_8ONezDvKqI5gLa4r57XLoH-qNE",
+      authDomain: "heatchat-184021.firebaseapp.com",
+      databaseURL: "https://heatchat-184021.firebaseio.com",
+      projectId: "heatchat-184021",
+      storageBucket: "heatchat-184021.appspot.com",
+      messagingSenderId: "1048720965159"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script>
+      var fbuser;
+
+    var usernameInput = document.querySelector('#username');
+    var textInput = document.querySelector('#text');
+    var postButton = document.querySelector('#post');
+
+    postButton.addEventListener("click", function() {
+      var msgText = textInput.value;
+      firebase.database().ref('messages/').push({uid:fbuser.uid, text:msgText, time:Date.now()});
+      textInput.value = "";
+    });
+
+    var db_ref = firebase.database().ref('messages/').orderByChild('time').startAt(Date.now());
+        db_ref.on('value', function(snapshot) {
+        if (snapshot.val()) {
+        snapshot.forEach(function(childSnapshot) {
+            var currentMsg = childSnapshot.val();
+        console.log(childSnapshot.val());
+        console.log(childSnapshot.key);
+
+        var msgUsernameElement = document.createElement("b");
+        msgUsernameElement.textContent = currentMsg.uid;
+
+        var msgTextElement = document.createElement("p");
+        msgTextElement.textContent = currentMsg.text;
+
+        var msgElement = document.createElement("div");
+        msgElement.appendChild(msgUsernameElement);
+        msgElement.appendChild(msgTextElement);
+
+        msgElement.className = "msg";
+        document.getElementById("results").appendChild(msgElement);
+        });
+    }});
+
+      firebase.auth().onAuthStateChanged(function (user) {
+          if(user) {
+              fbuser = user;
+              console.log(user);
+          }
+          else {
+              fbuser = null;
+          }
+      });
+
+    firebase.auth().signInAnonymously().catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+
+      // ...
+    });
+
+
+</script>
+</body>
+</html>
