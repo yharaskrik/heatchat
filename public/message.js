@@ -10,14 +10,6 @@ window.onload = function() {
     };
     firebase.initializeApp(config);
 
-    var fbuser;
-    var messageIDs = [];
-    var userLoc;
-
-    var textInput = document.querySelector('#message_input');
-    var postButton = document.querySelector('#send_message');
-
-
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             fbuser = user;
@@ -37,7 +29,14 @@ window.onload = function() {
         // ...
     });
 
-    postButton.addEventListener("click", function sendMessage () {
+    var fbuser;
+    var messageIDs = [];
+    var userLoc;
+
+    var textInput = document.querySelector('#message_input');
+    var postButton = document.querySelector('#send_message');
+
+    postButton.addEventListener("click", function () {
         var msgText = textInput.value;
         console.log(msgText);
         getLocation();
@@ -96,7 +95,10 @@ window.onload = function() {
             });
 
         }
+        var chatWindow = document.getElementById('chat_window');
+        chatWindow.scrollTop = chatWindow.scrollHeight;
     });
+
 
     function getLocation() {
         if (navigator.geolocation) {
