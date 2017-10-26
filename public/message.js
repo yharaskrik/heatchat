@@ -10,6 +10,10 @@ window.onload = function() {
     };
     firebase.initializeApp(config);
 
+    var fbuser;
+    var messageIDs = [];
+    var userLoc;
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             fbuser = user;
@@ -28,10 +32,6 @@ window.onload = function() {
 
         // ...
     });
-
-    var fbuser;
-    var messageIDs = [];
-    var userLoc;
 
     var textInput = document.querySelector('#message_input');
     var postButton = document.querySelector('#send_message');
