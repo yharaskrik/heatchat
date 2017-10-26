@@ -176,7 +176,7 @@
       <option name="presentableId" value="Default" />
       <updated>1508981477111</updated>
       <workItem from="1508981478247" duration="10730000" />
-      <workItem from="1508995518891" duration="1105000" />
+      <workItem from="1508995518891" duration="1125000" />
     </task>
     <task id="LOCAL-00001" summary="messaging sending and displaying is now working. Will add messages to the correct side based on who sent them.&#10;&#10;Need to get autoscrolling working and fix UI stuff.">
       <created>1508989788277</created>
@@ -206,11 +206,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508996542351</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="moved some functions around">
+      <created>1508996646175</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1508996646175</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11835000" />
+    <option name="totallyTimeSpent" value="11855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1178" extended-state="6" />
