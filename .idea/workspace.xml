@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea8b57c3-7edd-4252-910e-dda879d7c4c4" name="Default" comment="moved some functions around">
+    <list default="true" id="ea8b57c3-7edd-4252-910e-dda879d7c4c4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/message.js" afterPath="$PROJECT_DIR$/public/message.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -177,7 +176,7 @@
       <option name="presentableId" value="Default" />
       <updated>1508981477111</updated>
       <workItem from="1508981478247" duration="10730000" />
-      <workItem from="1508995518891" duration="1001000" />
+      <workItem from="1508995518891" duration="1105000" />
     </task>
     <task id="LOCAL-00001" summary="messaging sending and displaying is now working. Will add messages to the correct side based on who sent them.&#10;&#10;Need to get autoscrolling working and fix UI stuff.">
       <created>1508989788277</created>
@@ -200,11 +199,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508992166693</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="moved some functions around">
+      <created>1508996542351</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1508996542351</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11731000" />
+    <option name="totallyTimeSpent" value="11835000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1178" extended-state="6" />
