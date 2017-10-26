@@ -10,6 +10,25 @@ window.onload = function() {
     };
     firebase.initializeApp(config);
 
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            fbuser = user;
+            console.log(user);
+        }
+        else {
+            fbuser = null;
+        }
+    });
+
+    firebase.auth().signInAnonymously().catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+
+        // ...
+    });
+
     var fbuser;
     var messageIDs = [];
     var userLoc;
@@ -80,24 +99,6 @@ window.onload = function() {
         chatWindow.scrollTop = chatWindow.scrollHeight;
     });
 
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            fbuser = user;
-            console.log(user);
-        }
-        else {
-            fbuser = null;
-        }
-    });
-
-    firebase.auth().signInAnonymously().catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorMessage);
-
-        // ...
-    });
 
     function getLocation() {
         if (navigator.geolocation) {
