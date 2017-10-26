@@ -12,6 +12,7 @@ window.onload = function() {
 
     var fbuser;
     var messageIDs = [];
+    var userLoc;
 
     var textInput = document.querySelector('#message_input');
     var postButton = document.querySelector('#send_message');
@@ -19,8 +20,17 @@ window.onload = function() {
     postButton.addEventListener("click", function () {
         var msgText = textInput.value;
         console.log(msgText);
-        firebase.database().ref('messages/').push({uid: fbuser.uid, text: msgText, time: Date.now()});
+        getLocation();
+        console.log(userLoc);
+        firebase.database().ref('messages/').push({
+            uid: fbuser.uid,
+            text: msgText,
+            time: Date.now(),
+            lat: userLoc.coords.latitude,
+            lon: userLoc.coords.longitude
+        });
         textInput.value = "";
+        textInput.focus();
     });
 
     var Message;
@@ -88,4 +98,18 @@ window.onload = function() {
 
         // ...
     });
-}
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log(position.coords.latitude);
+                console.log(position.coords.longitude);
+                userLoc = position;
+            }
+            );
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    getLocation();
+};
