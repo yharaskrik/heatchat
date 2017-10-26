@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea8b57c3-7edd-4252-910e-dda879d7c4c4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/message.js" afterPath="$PROJECT_DIR$/public/message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/styles.css" afterPath="$PROJECT_DIR$/public/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,7 +19,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/index.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="414">
@@ -30,6 +28,16 @@
                     <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="e#1396#1400#1" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="36">
+                  <caret line="2" column="85" lean-forward="false" selection-start-line="2" selection-start-column="85" selection-end-line="2" selection-end-column="85" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -96,6 +104,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/message.js" />
         <option value="$PROJECT_DIR$/public/styles.css" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -177,7 +186,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1508981477111</updated>
-      <workItem from="1508981478247" duration="10664000" />
+      <workItem from="1508981478247" duration="10730000" />
     </task>
     <task id="LOCAL-00001" summary="messaging sending and displaying is now working. Will add messages to the correct side based on who sent them.&#10;&#10;Need to get autoscrolling working and fix UI stuff.">
       <created>1508989788277</created>
@@ -193,11 +202,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508989970696</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="removed resizing of textarea.&#10;Added google analytics">
+      <created>1508992166693</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1508992166693</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10664000" />
+    <option name="totallyTimeSpent" value="10730000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="20" width="1602" height="849" extended-state="6" />
@@ -230,7 +246,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="messaging sending and displaying is now working. Will add messages to the correct side based on who sent them.&#10;&#10;Need to get autoscrolling working and fix UI stuff." />
     <MESSAGE value="added google analytics" />
-    <option name="LAST_COMMIT_MESSAGE" value="added google analytics" />
+    <MESSAGE value="removed resizing of textarea.&#10;Added google analytics" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed resizing of textarea.&#10;Added google analytics" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -285,6 +302,14 @@
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="e#1396#1400#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="85" lean-forward="false" selection-start-line="2" selection-start-column="85" selection-end-line="2" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>
