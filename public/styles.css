@@ -19,7 +19,8 @@ textarea {
     background-color: #fff;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     background-color: #f8f8f8;
-    overflow: hidden;
+    overflow: scroll;
+    padding-bottom: 80px;
 }
 
 .top_menu {
@@ -146,7 +147,7 @@ textarea {
     width: 100%;
     background-color: #fff;
     padding: 20px 20px 20px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     height: 80px;
 }
