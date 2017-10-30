@@ -60,6 +60,9 @@ window.onload = function() {
                 var $message;
                 $message = $($('.message_template').clone().html());
                 $message.addClass(_this.message_side).find('.text').html(_this.text);
+
+                // $message.id('id', _this.message_id);
+                console.log(typeof $message);
                 $('.messages').append($message);
                 return setTimeout(function () {
                     return $message.addClass('appeared');
@@ -68,6 +71,15 @@ window.onload = function() {
         }(this);
         return this;
     };
+
+    var scroll = function(div) {
+        var totalHeight = 0;
+        div.find('.chat_window').each(function(){
+            totalHeight += $(this).outerHeight();
+        });
+        div.scrollTop(totalHeight);
+    };
+
 
     var db_ref = firebase.database().ref('messages/').orderByChild('time').startAt(Date.now());
     db_ref.on('value', function (snapshot) {
@@ -86,17 +98,16 @@ window.onload = function() {
                     }
                     var message = new Message({
                         text: currentMsg.text,
-                        message_side: currentMsg.side
+                        message_side: currentMsg.side,
+                        message_id: childSnapshot.key
                     });
                     message.draw();
+                    $('ul li.message').last()[0].scrollIntoView()
                 }
 
 
             });
-
         }
-        var chatWindow = document.getElementById('chat_window');
-        chatWindow.scrollTop = chatWindow.scrollHeight;
     });
 
 
