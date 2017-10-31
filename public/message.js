@@ -33,11 +33,11 @@ window.onload = function() {
         // ...
     });
 
-    var textInput = document.querySelector('#message_input');
-    var postButton = document.querySelector('#send_message');
-
-    postButton.addEventListener("click", function () {
+    function send_message () {
         var msgText = textInput.value;
+        if (msgText.trim().length <= 0) {
+            return
+        }
         console.log(msgText);
         getLocation();
         console.log(userLoc);
@@ -50,6 +50,19 @@ window.onload = function() {
         });
         textInput.value = "";
         textInput.focus();
+    }
+
+    var textInput = document.querySelector('#message_input');
+    var postButton = document.querySelector('#send_message');
+
+    postButton.addEventListener("click", function() {
+        send_message();
+    });
+
+    $("#message_input").on('keyup', function (e) {
+        if (e.keyCode == 13) {
+            send_message();
+        }
     });
 
     var Message;
@@ -72,16 +85,7 @@ window.onload = function() {
         return this;
     };
 
-    var scroll = function(div) {
-        var totalHeight = 0;
-        div.find('.chat_window').each(function(){
-            totalHeight += $(this).outerHeight();
-        });
-        div.scrollTop(totalHeight);
-    };
-
-
-    var db_ref = firebase.database().ref('messages/').orderByChild('time').startAt(Date.now());
+    var db_ref = firebase.database().ref('messages/').orderByChild('time').startAt(Date.now() - 3600000);
     db_ref.on('value', function (snapshot) {
         if (snapshot.val()) {
             snapshot.forEach(function (childSnapshot) {
@@ -109,6 +113,7 @@ window.onload = function() {
             });
         }
     });
+
 
 
     function getLocation() {
