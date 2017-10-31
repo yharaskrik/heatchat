@@ -72,7 +72,9 @@ window.onload = function() {
             return function () {
                 var $message;
                 $message = $($('.message_template').clone().html());
-                $message.addClass(_this.message_side).find('.text').html(_this.text);
+                var side;
+                // if (_this.messag)
+                $message.addClass(_this.message_side).css('display', 'block').find('.text').html(_this.text);
 
                 // $message.id('id', _this.message_id);
                 console.log(typeof $message);
