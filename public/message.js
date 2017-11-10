@@ -21,7 +21,6 @@ window.onload = function () {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             fbuser = user;
-            console.log(user);
         }
         else {
             fbuser = null;
@@ -32,7 +31,6 @@ window.onload = function () {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorMessage);
 
         // ...
     });
@@ -44,9 +42,7 @@ window.onload = function () {
                 return
             }
             msgText = msgText.trim();
-            console.log(msgText);
             getLocation();
-            console.log(userLoc);
             firebase.database().ref('/' + currentSchool.path + '/messages/').push({
                 uid: fbuser.uid,
                 text: msgText,
@@ -62,7 +58,7 @@ window.onload = function () {
     var textInput = document.querySelector('#message_input');
     var postButton = document.querySelector('#send_message');
 
-    postButton.addEventListener("click", function() {
+    postButton.addEventListener("click", function () {
         send_message();
     });
 
@@ -79,12 +75,8 @@ window.onload = function () {
             return function () {
                 var $message;
                 $message = $($('.message_template').clone().html());
-                var side;
-                // if (_this.messag)
-                $message.addClass(_this.message_side).css('display', 'block').find('.text').html(_this.text);
 
-                // $message.id('id', _this.message_id);
-                // console.log(typeof $message);
+                $message.addClass(_this.message_side).css('display', 'block').find('.text').html(_this.text);
                 $('.messages').append($message);
                 return setTimeout(function () {
                     return $message.addClass('appeared');
@@ -106,16 +98,12 @@ window.onload = function () {
                 $school.attr('id', count);
                 $school.attr('data-toggle', 'drawer');
                 $school.on('click', function () {
-                   console.log($(this).attr('id'));
-                   changeSchool(schools[$(this).attr('id')]);
+                    changeSchool(schools[$(this).attr('id')]);
                 });
                 count = count + 1;
                 $('.drawer-nav').append($school);
 
                 if (userLoc != null) {
-                    console.log("User loc is not null");
-                    console.log(userLoc);
-                    console.log(schoolItem);
                     schoolItem.distance = distance(
                         schoolItem.lat,
                         schoolItem.lon,
@@ -130,18 +118,16 @@ window.onload = function () {
             schools.sort(function (obj1, obj2) {
                 return obj1.distance - obj2.distance;
             });
-            console.log('/' + schools[0].path + '/messages/');
             changeSchool(schools[0]);
             currentSchool = schools[0];
-            console.log(schools);
+            disableInput();
         }
-        console.log(schools);
     });
 
     function changeSchool(school) {
         getLocation();
-        console.log('changing school to' + school.name);
         if (currentSchool == null || (school.path != currentSchool.path)) {
+            currentSchool = school;
             var ul = document.getElementById('message_window');
             if (ul) {
                 while (ul.firstChild) {
@@ -172,20 +158,31 @@ window.onload = function () {
                             message.draw();
                             $('ul li.message').last()[0].scrollIntoView()
                         }
-
-
                     });
                 }
             });
+            disableInput();
+        }
+    }
+
+    function disableInput() {
+        if (currentSchool != null) {
+            if (currentSchool.distance > 30) {
+                textInput.disabled = true;
+                postButton.disabled = true;
+                textInput.placeholder = "Not close enough to this school."
+            }
+            else {
+                textInput.disabled = false;
+                postButton.disabled = false;
+                textInput.placeholder = "Enter a message."
+            }
         }
     }
 
     function getLocation() {
-        console.log('Geo Called');
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                    console.log(position.coords.latitude);
-                    console.log(position.coords.longitude);
                     userLoc = position;
                 }
             );
@@ -199,11 +196,10 @@ window.onload = function () {
     function distance(lat1, lon1, lat2, lon2) {
         var p = 0.017453292519943295;    // Math.PI / 180
         var c = Math.cos;
-        var a = 0.5 - c((lat2 - lat1) * p)/2 +
+        var a = 0.5 - c((lat2 - lat1) * p) / 2 +
             c(lat1 * p) * c(lat2 * p) *
-            (1 - c((lon2 - lon1) * p))/2;
+            (1 - c((lon2 - lon1) * p)) / 2;
 
-        console.log("DISTANCE: " + 12742 * Math.asin(Math.sqrt(a)));
         return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
     }
 };
