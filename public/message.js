@@ -13,6 +13,7 @@ window.onload = function() {
     var fbuser;
     var messageIDs = [];
     var userLoc;
+    var schools = [];
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -87,33 +88,50 @@ window.onload = function() {
         return this;
     };
 
-    var db_ref = firebase.database().ref('messages/').orderByChild('time').startAt(Date.now() - 3600000);
-    db_ref.on('value', function (snapshot) {
+    firebase.database().ref('/schools/').once('value').then(function (snapshot) {
         if (snapshot.val()) {
             snapshot.forEach(function (childSnapshot) {
+                var currentSchool = childSnapshot.val();
+                currentSchool.key = childSnapshot.key;
 
-                var currentMsg = childSnapshot.val();
-                if (messageIDs.indexOf(childSnapshot.key) === -1) {
-                    messageIDs.push(childSnapshot.key);
+                schools.push(currentSchool);
+            });
+            console.log('Schools');
+            console.log(schools);
+            console.log(schools[0].path);
+            var db_ref = firebase.database().ref('/' + schools[0].path + '/messages/');
+            db_ref.on('value', function (snapshot) {
+                console.log("listening");
+                console.log(snapshot.val());
+                if (snapshot.val()) {
+                    console.log(snapshot.val());
+                    snapshot.forEach(function (childSnapshot) {
 
-                    if (currentMsg.uid === fbuser.uid) {
-                        currentMsg.side = 'right';
-                    }
-                    else {
-                        currentMsg.side = 'left';
-                    }
-                    var message = new Message({
-                        text: currentMsg.text,
-                        message_side: currentMsg.side,
-                        message_id: childSnapshot.key
+                        var currentMsg = childSnapshot.val();
+                        if (messageIDs.indexOf(childSnapshot.key) === -1) {
+                            messageIDs.push(childSnapshot.key);
+
+                            if (currentMsg.uid === fbuser.uid) {
+                                currentMsg.side = 'right';
+                            }
+                            else {
+                                currentMsg.side = 'left';
+                            }
+                            var message = new Message({
+                                text: currentMsg.text,
+                                message_side: currentMsg.side,
+                                message_id: childSnapshot.key
+                            });
+                            message.draw();
+                            $('ul li.message').last()[0].scrollIntoView()
+                        }
+
+
                     });
-                    message.draw();
-                    $('ul li.message').last()[0].scrollIntoView()
                 }
-
-
             });
         }
+        console.log(schools);
     });
 
 
