@@ -5,18 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Heatchat</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/dist/css/bootstrap-drawer.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script src="js/drawer.min.js"></script>
+
     <script src="message.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64597597-5"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-64597597-5');
@@ -30,77 +44,59 @@
     </script>
 
 </head>
-<body>
-<!--<div class="container-fluid">-->
-<!--<div class="message_template container-fluid cols-xs-4" id="chat_window">-->
-    <!--<li class="message">-->
-        <!--<div class="avatar"></div>-->
-        <!--<div class="text_wrapper">-->
-            <!--<div class="text"></div>-->
-        <!--</div>-->
-    <!--</li>-->
-<!--</div>-->
-<!--<div class="top_menu">-->
-    <!--<div class="title">Heatchat</div>-->
-<!--</div>-->
-<!--<div id="scrollWindow" class="scrollWindow" style="height: calc(100% - 100px); width: calc(100% - 20px); overflow-y: scroll; position: absolute; border-radius: 20px;">-->
 
-            <!--<ul class="messages message_window"></ul>-->
-    <!--</div>-->
-        <!--<form class="bottom_wrapper form-width">-->
-            <!--<div class="message_input_wrapper col-xs-9"><textarea id="message_input" class="message_input form-control" placeholder="Type your message here..."></textarea></div>-->
-            <!--<div class="send_message col-xs-1" id="send_message">-->
-                <!--<div class="icon"></div>-->
-                <!--<div class="text">&gt;</div>-->
-            <!--</div>-->
-        <!--</form>-->
+<body class="has-drawer">
+<li role="presentation" class="school_template" style="display: none;"><a href="#drawerExample" data-toggle="drawer">Messages</a></li>
 
-<!--<div id="chat_window" class="row text-right message_template">-->
-    <!--<div class="cols-xs-4">-->
-        <!--<li class="message">-->
-            <!--<div class="avatar"></div>-->
-            <!--<div class="text_wrapper">-->
-                <!--<div class="text"></div>-->
-            <!--</div>-->
-        <!--</li>-->
-    <!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</nav>
-
-<div class="message_template container-fluid cols-xs-4" id="chat_window" style="display: none;">
-    <li class="bubble message">
-        <div class="text_wrapper">
-            <div class="text"></div>
+<div id="drawerExample" class="drawer dw-xs-10 dw-sm-6 dw-md-4 fold" aria-labelledby="drawerExample">
+    <div class="drawer-controls">
+        <a href="#drawerExample" data-toggle="drawer" aria-foldedopen="false" aria-controls="drawerExample" class="btn btn-primary btn-sm">Menu</a>
+    </div>
+    <div class="drawer-contents">
+        <div class="drawer-heading">
+            <h2 class="drawer-title">Schools</h2>
         </div>
-    </li>
+        <ul class="drawer-nav">
+
+        </ul>
+    </div>
 </div>
+<div class="container">
 
+    <!--<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">-->
 
-<main role="main" class="container">
+        <!--<a class="navbar-brand" href="#">Heatchat</a>-->
+    <!--</nav>-->
 
-    <div class="starter-template scrollWindow">
-        <ul class="messages message_window"></ul>
+    <div class="row message_template" id="chat_window" style="display: none;">
+        <li class="bubble message">
+            <div class="text_wrapper">
+                <div class="text"></div>
+            </div>
+        </li>
     </div>
 
-</main><!-- /.container -->
 
+    <main role="main" class="container">
 
-<footer class="footer">
-    <div class="container navbar navbar-default navbar-fixed-bottom">
-        <div class="form-inline my-2 my-lg-0 input-group">
-            <textarea class="form-control custom-control" rows="3" style="resize:none" id="message_input"></textarea>
-            <span class="input-group-addon btn btn-primary" id="send_message">Send</span>
+        <div class="scrollWindow">
+            <ul id="message_window" class="messages message_window"></ul>
         </div>
-    </div>
-</footer>
 
+    </main><!-- /.container -->
+    <div class="container">
+        <footer class="footer">
+            <div class="container navbar navbar-default navbar-fixed-bottom">
+                <div class="form-inline my-2 my-lg-0 input-group">
+                <textarea class="form-control custom-control" rows="3" style="resize:none"
+                          id="message_input"></textarea>
+                    <span class="input-group-addon btn btn-primary" id="send_message">Send</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</div>
 
 </body>
 </html>
