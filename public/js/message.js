@@ -43,10 +43,10 @@ window.onload = function () {
             }
             msgText = msgText.trim();
             getLocation();
-            firebase.database().ref('/' + currentSchool.path + '/messages/').push({
+            firebase.database().ref('/schoolMessages/' + currentSchool.path + '/messages/').push({
                 uid: fbuser.uid,
                 text: msgText,
-                time: Date.now(),
+                time: parseInt(Date.now()),
                 lat: userLoc.coords.latitude,
                 lon: userLoc.coords.longitude
             });
@@ -96,12 +96,11 @@ window.onload = function () {
                 var $school = $($('.school_template').clone().html());
                 $school.css('display', 'block').html(schoolItem.name);
                 $school.attr('id', count);
-                $school.attr('data-toggle', 'drawer');
                 $school.on('click', function () {
                     changeSchool(schools[$(this).attr('id')]);
                 });
                 count = count + 1;
-                $('.drawer-nav').append($school);
+                $('.list-group').append($school);
 
                 if (userLoc != null) {
                     schoolItem.distance = distance(
@@ -135,7 +134,7 @@ window.onload = function () {
                 }
             }
             messageIDs = [];
-            db_ref = firebase.database().ref('/' + school.path + '/messages/');
+            db_ref = firebase.database().ref('schoolMessages/' + school.path + '/messages/');
             db_ref.on('value', function (snapshot) {
                 if (snapshot.val()) {
                     snapshot.forEach(function (childSnapshot) {
@@ -203,3 +202,8 @@ window.onload = function () {
         return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
     }
 };
+
+$('#menu_drawer').click(function (e) {
+    e.preventDefault();
+    $('#dw-1').toggleClass("toggled");
+});

@@ -1,45 +1,33 @@
 .footer {
     position: fixed;
     bottom: 0;
-    width: 80%;
-    /*height: 60px; !* Set the fixed height of the footer here *!*/
-    /*line-height: 60px; !* Vertically center the text there *!*/
-    /*background-color: #f5f5f5;*/
+    width: 90vw;
 }
 
-div.scrollWindow {
+ul.message_window {
     overflow-y: scroll;
     position: fixed;
-    height: 85%;
+    width: 95vw;
+    height: 80%;
+    background-color: #EBEBEB;
 }
 
-/*.bubble {*/
-    /*position: relative;*/
-    /*background: #FFFFFF;*/
-    /*border: 1px solid #000000;*/
-    /*padding:10px;*/
-    /*font-family:arial;*/
-    /*margin:0 0 3px 0;*/
-    /*font-size:14px;*/
-    /*border-radius:6px;*/
-/*}*/
+body {
+    background-color: #EBEBEB;
+}
 
-/*ul {*/
-    /*-webkit-columns: 2;*/
-    /*-moz-columns: 2;*/
-    /*columns: 2;*/
-/*}*/
+.school_template {
+    text-align: center;
+}
+
 li:before {
-    content:'';
+    content: '';
     display: block;
 }
 
 li {
     font-size: small;
 }
-
-/*.left { float:left; width:50%; clear:left; }*/
-/*.right { float:right; width:50%; clear:right }*/
 
 .messages {
     position: relative;
@@ -49,6 +37,7 @@ li {
     height: 100%;
     overflow: scroll;
 }
+
 .messages .message {
     clear: both;
     overflow: hidden;
@@ -59,34 +48,42 @@ li {
     -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
 }
+
 .messages .message.left .text_wrapper {
-    background-color: #e4af00;
+    background-color: white;
     opacity: 0.75;
 }
+
 .messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
     right: 100%;
-    border-right-color: #e4af00;
+    border-right-color: white;
 }
+
 .messages .message.left .text {
     color: #000000;
     opacity: 1;
 }
+
 .messages .message.right .text_wrapper {
-    background-color: #233f80;
+    background-color: #34AF23;
     float: right;
     opacity: 0.75;
 }
+
 .messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
     left: 100%;
-    border-left-color: #233f80;
+    border-left-color: #34AF23;
 }
+
 .messages .message.right .text {
     color: #000000;
     opacity: 1;
 }
+
 .messages .message.appeared {
     opacity: 1;
 }
+
 .messages .message .text_wrapper {
     display: inline-block;
     padding: 20px 20px 20px 20px;
@@ -94,6 +91,7 @@ li {
     min-width: 100px;
     position: relative;
 }
+
 .messages .message .text_wrapper::after, .messages .message .text_wrapper:before {
     top: 18px;
     border: solid transparent;
@@ -103,14 +101,17 @@ li {
     position: absolute;
     pointer-events: none;
 }
+
 .messages .message .text_wrapper::after {
     border-width: 13px;
     margin-top: 0;
 }
+
 .messages .message .text_wrapper::before {
     border-width: 15px;
     margin-top: -2px;
 }
+
 .messages .message .text_wrapper .text {
     font-size: 18px;
     font-weight: 300;
