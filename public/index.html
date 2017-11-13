@@ -40,22 +40,27 @@
 
 <body>
 
-<li class="school_template" style="display: none;"><a class="btn btn-secondary" id="menu_drawer">Messages</a></li>
+<li class="school_template" style="display: none;"><a class="waves-effect school_item" id="menu_drawer">Messages</a></li>
 
-<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay-md-down bmd-drawer-in-lg-up">
+<div class="bmd-layout-container">
     <nav>
         <div class="nav-wrapper">
-            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+            <a class="brand-logo" href="#!">Heatchat</a>
 
-            <a href="#!" class="brand-logo center">Heatchat</a>
+            <ul class="right">
+                <li><a href="https://ttsd4.app.goo.gl/crwp"><i class="material-icons">phone_iphone</i></a></li>
+            </ul>
         </div>
+
     </nav>
 
     <ul id="slide-out" class="side-nav list-group">
         <li>
             <header>
-                <a class="navbar-brand">Schools</a>
+                <h3 class="navbar-brand">Schools</h3>
             </header>
+            <div class="divider"></div>
         </li>
     </ul>
 
@@ -72,18 +77,55 @@
 
         </ul>
 
-        <footer class="footer-copyright footer">
+        <footer class="footer">
+            <!--<div class="row">-->
+                <!--<div class="col s9 input-field">-->
+                    <!--<textarea type="text" class="form-control" placeholder="Enter Message." id="message_input"-->
+                              <!--style="resize:none"></textarea>-->
+                <!--</div>-->
+                <!--<div class="col s3 input-field send_button">-->
+                    <!--<span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="row">
-                <div class="col s9 input-field">
-                    <textarea type="text" class="form-control" placeholder="Enter Message." id="message_input"
-                              style="resize:none"></textarea>
+                <form class="col s12">
+
+                <div class="row">
+                    <div class="input-field col s9">
+                        <textarea id="message_input" class="materialize-textarea form-control"></textarea>
+                        <!--<label id="inputLabel" for="message_input">Enter a message.</label>-->
+                    </div>
+                    <div class="col s3 input-field send_button">
+                        <span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>
+                    </div>
                 </div>
-                <div class="col s3 input-field">
-                    <span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>
-                </div>
+                </form>
             </div>
         </footer>
     </main>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col">
+                    <h4>Try the mobile app!</h4>
+                </div>
+                <div class="col">
+                    <img src="res/favicon.png">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h6>If you are on Android or iOS click download to try the apps!</h6>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="https://ttsd4.app.goo.gl/crwp" class="modal-action modal-close waves-effect waves-green btn-flat">Download</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No Thank you</a>
+        </div>
+    </div>
 </div>
 
 <!--Import jQuery before materialize.js-->
@@ -111,6 +153,21 @@
     $(document).ready(function () {
         $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
     });
+
+    $(window).on('resize', function() {
+        $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
+    });
+
+    $('.modal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%', // Ending top style attribute
+        }
+    );
+    $('#modal1').modal('open');
 </script>
 
 <script>

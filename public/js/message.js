@@ -174,12 +174,13 @@ window.onload = function () {
             if (currentSchool.distance > 30) {
                 textInput.disabled = true;
                 postButton.disabled = true;
-                textInput.placeholder = "Not close enough to this school."
+                textInput.placeholder = ""
+                textInput.placeholder =  "Not close enough to this school.";
             }
             else {
                 textInput.disabled = false;
                 postButton.disabled = false;
-                textInput.placeholder = "Enter a message."
+                textInput.placeholder = "Enter a message.";
             }
         }
     }

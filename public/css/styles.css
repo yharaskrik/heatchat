@@ -2,10 +2,12 @@
     position: fixed;
     bottom: 0;
     text-align: center;
-    vertical-align: middle;
     height: 10%;
     width: 100%;
-    margin-bottom: 10px;
+}
+
+ul::-webkit-scrollbar {
+    display: none;
 }
 
 ul.message_window {
@@ -15,11 +17,15 @@ ul.message_window {
     height: 100%;
     padding-left: 10px;
     padding-bottom: 10px;
-    background-color: #EBEBEB;
+    background-color: #d8e0e4;
 }
 
 body {
-    background-color: #EBEBEB;
+    background-color: #d8e0e4;
+}
+
+main {
+    padding-bottom: 0px;
 }
 
 .school_template {
@@ -50,6 +56,14 @@ li {
     overflow: scroll;
 }
 
+#send_message {
+    background-color: cornflowerblue;
+}
+
+.nav-wrapper {
+    background-color: cornflowerblue;
+}
+
 .messages .message {
     clear: both;
     overflow: hidden;
@@ -62,33 +76,23 @@ li {
 }
 
 .messages .message.left .text_wrapper {
-    background-color: white;
+    background-color: floralwhite;
     opacity: 0.75;
 }
 
-.messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
-    right: 100%;
-    border-right-color: white;
-}
-
 .messages .message.left .text {
-    color: #000000;
+    color: cornflowerblue;
     opacity: 1;
 }
 
 .messages .message.right .text_wrapper {
-    background-color: #34AF23;
+    background-color: cornflowerblue;
     float: right;
     opacity: 0.75;
 }
 
-.messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
-    left: 100%;
-    border-left-color: #34AF23;
-}
-
 .messages .message.right .text {
-    color: #000000;
+    color: floralwhite;
     opacity: 1;
 }
 
