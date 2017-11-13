@@ -6,7 +6,7 @@
     <link rel="icon" href="res/favicon.png">
     <title>Heatchat</title>
 
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
     <!-- Bootstrap Material Design generic -->
-    <link href="styles/bootstrap-material-design.css" rel="stylesheet">
+    <!--<link href="styles/bootstrap-material-design.css" rel="stylesheet">-->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64597597-5"></script>
@@ -46,7 +46,8 @@
     <nav>
         <div class="nav-wrapper">
             <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-            <a href="#!" class="brand-logo center">Logo</a>
+
+            <a href="#!" class="brand-logo center">Heatchat</a>
         </div>
     </nav>
 
@@ -71,11 +72,15 @@
 
         </ul>
 
-        <footer class="container-fluid footer">
-            <div class="input-group">
-                <textarea type="text" class="form-control" placeholder="Enter Message." id="message_input"
-                          style="resize:none"></textarea>
-                <span class="input-group-addon btn btn-primary send_message" id="send_message">Send</span>
+        <footer class="footer-copyright footer">
+            <div class="row">
+                <div class="col s9 input-field">
+                    <textarea type="text" class="form-control" placeholder="Enter Message." id="message_input"
+                              style="resize:none"></textarea>
+                </div>
+                <div class="col s3 input-field">
+                    <span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>
+                </div>
             </div>
         </footer>
     </main>
@@ -101,6 +106,10 @@
         edge: 'left', // Choose the horizontal origin
         closeOnClick: true,
         draggable: true
+    });
+
+    $(document).ready(function () {
+        $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
     });
 </script>
 

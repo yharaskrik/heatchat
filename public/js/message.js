@@ -35,7 +35,7 @@ window.onload = function () {
         var errorMessage = error.message;
 
         // ...
-    }).then();
+    });
 
     function send_message() {
         if (currentSchool) {
