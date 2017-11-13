@@ -40,12 +40,14 @@
 
 <body>
 
-<li class="school_template" style="display: none;"><a class="waves-effect school_item" id="menu_drawer">Messages</a></li>
+<li class="school_template" style="display: none;"><a class="waves-effect school_item" id="menu_drawer">Messages</a>
+</li>
 
 <div class="bmd-layout-container">
     <nav>
         <div class="nav-wrapper">
-            <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i
+                    class="material-icons">menu</i></a>
             <a class="brand-logo" href="#!">Heatchat</a>
 
             <ul class="right">
@@ -78,27 +80,18 @@
         </ul>
 
         <footer class="footer">
-            <!--<div class="row">-->
-                <!--<div class="col s9 input-field">-->
-                    <!--<textarea type="text" class="form-control" placeholder="Enter Message." id="message_input"-->
-                              <!--style="resize:none"></textarea>-->
-                <!--</div>-->
-                <!--<div class="col s3 input-field send_button">-->
-                    <!--<span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="row">
                 <form class="col s12">
 
-                <div class="row">
-                    <div class="input-field col s9">
-                        <textarea id="message_input" class="materialize-textarea form-control"></textarea>
-                        <!--<label id="inputLabel" for="message_input">Enter a message.</label>-->
+                    <div class="row">
+                        <div class="input-field col s9">
+                            <textarea id="message_input" class="materialize-textarea form-control"></textarea>
+                            <!--<label id="inputLabel" for="message_input">Enter a message.</label>-->
+                        </div>
+                        <div class="col s3 input-field send_button">
+                            <span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>
+                        </div>
                     </div>
-                    <div class="col s3 input-field send_button">
-                        <span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>
-                    </div>
-                </div>
                 </form>
             </div>
         </footer>
@@ -154,7 +147,7 @@
         $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
     });
 
-    $(window).on('resize', function() {
+    $(window).on('resize', function () {
         $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
     });
 

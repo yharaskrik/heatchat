@@ -174,8 +174,7 @@ window.onload = function () {
             if (currentSchool.distance > 30) {
                 textInput.disabled = true;
                 postButton.disabled = true;
-                textInput.placeholder = ""
-                textInput.placeholder =  "Not close enough to this school.";
+                textInput.placeholder = "Not close enough to this school.";
             }
             else {
                 textInput.disabled = false;
