@@ -1,15 +1,16 @@
 .footer {
     position: fixed;
     bottom: 0;
-    width: 90vw;
+    width: 85vw;
 }
 
 ul.message_window {
     overflow-y: scroll;
     position: fixed;
-    width: 95vw;
+    width: 85vw;
     height: 80%;
     background-color: #EBEBEB;
+    padding-left: 10px;
 }
 
 body {

@@ -17,10 +17,12 @@ window.onload = function () {
     var currentSchool;
     var db_ref;
     var currentIndex;
+    var loadedSchools = false;
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             fbuser = user;
+            schoolListener();
         }
         else {
             fbuser = null;
@@ -33,7 +35,7 @@ window.onload = function () {
         var errorMessage = error.message;
 
         // ...
-    });
+    }).then();
 
     function send_message() {
         if (currentSchool) {
@@ -86,42 +88,45 @@ window.onload = function () {
         return this;
     };
 
-    firebase.database().ref('/schools/').once('value').then(function (snapshot) {
-        if (snapshot.val()) {
-            var count = 0;
-            snapshot.forEach(function (childSnapshot) {
-                var schoolItem = childSnapshot.val();
-                schoolItem.key = childSnapshot.key;
+    function schoolListener() {
+        firebase.database().ref('/schools/').once('value').then(function (snapshot) {
+            if (snapshot.val()) {
+                var count = 0;
+                snapshot.forEach(function (childSnapshot) {
+                    var schoolItem = childSnapshot.val();
+                    schoolItem.key = childSnapshot.key;
 
-                var $school = $($('.school_template').clone().html());
-                $school.css('display', 'block').html(schoolItem.name);
-                $school.attr('id', count);
-                $school.on('click', function () {
-                    changeSchool(schools[$(this).attr('id')]);
+                    var $school = $($('.school_template').clone().html());
+                    $school.css('display', 'block').html(schoolItem.name);
+                    $school.attr('id', count);
+                    $school.on('click', function () {
+                        changeSchool(schools[$(this).attr('id')]);
+                    });
+                    count = count + 1;
+                    $('.list-group').append($school);
+
+                    if (userLoc != null) {
+                        schoolItem.distance = distance(
+                            schoolItem.lat,
+                            schoolItem.lon,
+                            userLoc.coords.latitude,
+                            userLoc.coords.longitude);
+                    }
+                    else {
+                        schoolItem.distance = 0;
+                    }
+                    schools.push(schoolItem);
                 });
-                count = count + 1;
-                $('.list-group').append($school);
+                schools.sort(function (obj1, obj2) {
+                    return obj1.distance - obj2.distance;
+                });
+                changeSchool(schools[0]);
+                currentSchool = schools[0];
+                disableInput();
+            }
+        });
+    }
 
-                if (userLoc != null) {
-                    schoolItem.distance = distance(
-                        schoolItem.lat,
-                        schoolItem.lon,
-                        userLoc.coords.latitude,
-                        userLoc.coords.longitude);
-                }
-                else {
-                    schoolItem.distance = 0;
-                }
-                schools.push(schoolItem);
-            });
-            schools.sort(function (obj1, obj2) {
-                return obj1.distance - obj2.distance;
-            });
-            changeSchool(schools[0]);
-            currentSchool = schools[0];
-            disableInput();
-        }
-    });
 
     function changeSchool(school) {
         getLocation();
@@ -202,8 +207,3 @@ window.onload = function () {
         return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
     }
 };
-
-$('#menu_drawer').click(function (e) {
-    e.preventDefault();
-    $('#dw-1').toggleClass("toggled");
-});
