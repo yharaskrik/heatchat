@@ -48,7 +48,7 @@
         <div class="nav-wrapper">
             <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i
                     class="material-icons">menu</i></a>
-            <a class="brand-logo" href="#!">Heatchat</a>
+            <a class="brand-logo truncate" href="#!">Heatchat</a>
 
             <ul class="right">
                 <li><a href="https://ttsd4.app.goo.gl/crwp"><i class="material-icons">phone_iphone</i></a></li>
@@ -78,17 +78,15 @@
         <ul id="message_window" class="messages message_window">
 
         </ul>
-
         <footer class="footer">
             <div class="row">
                 <form class="col s12">
-
                     <div class="row">
-                        <div class="input-field col s9">
-                            <textarea id="message_input" class="materialize-textarea form-control"></textarea>
+                        <div class="input-field col s9 valign-wrapper hoverable">
+                            <textarea id="message_input" class="materialize-textarea form-control input-field"></textarea>
                             <!--<label id="inputLabel" for="message_input">Enter a message.</label>-->
                         </div>
-                        <div class="col s3 input-field send_button">
+                        <div class="col s3 input-field send_button valign-wrapper">
                             <span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>
                         </div>
                     </div>
@@ -150,17 +148,6 @@
     $(window).on('resize', function () {
         $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
     });
-
-    $('.modal').modal({
-            dismissible: true, // Modal can be dismissed by clicking outside of the modal
-            opacity: .5, // Opacity of modal background
-            inDuration: 300, // Transition in duration
-            outDuration: 200, // Transition out duration
-            startingTop: '4%', // Starting top style attribute
-            endingTop: '10%', // Ending top style attribute
-        }
-    );
-    $('#modal1').modal('open');
 </script>
 
 <script>

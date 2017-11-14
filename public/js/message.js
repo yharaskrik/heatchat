@@ -1,5 +1,15 @@
 window.onload = function () {
 // Initialize Firebase
+    $('.modal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%', // Ending top style attribute
+        }
+    );
+
     var config = {
         apiKey: "AIzaSyCEEGAf_8ONezDvKqI5gLa4r57XLoH-qNE",
         authDomain: "heatchat-184021.firebaseapp.com",
@@ -90,41 +100,41 @@ window.onload = function () {
 
     function schoolListener() {
         firebase.database().ref('/schools/').once('value').then(function (snapshot) {
-            if (snapshot.val()) {
-                var count = 0;
-                snapshot.forEach(function (childSnapshot) {
-                    var schoolItem = childSnapshot.val();
-                    schoolItem.key = childSnapshot.key;
+                if (snapshot.val()) {
+                    var count = 0;
+                    snapshot.forEach(function (childSnapshot) {
+                        var schoolItem = childSnapshot.val();
+                        schoolItem.key = childSnapshot.key;
 
-                    var $school = $($('.school_template').clone().html());
-                    $school.css('display', 'block').html(schoolItem.name);
-                    $school.attr('id', count);
-                    $school.on('click', function () {
-                        changeSchool(schools[$(this).attr('id')]);
+                        var $school = $($('.school_template').clone().html());
+                        $school.css('display', 'block').html(schoolItem.name);
+                        $school.attr('id', count);
+                        $school.on('click', function () {
+                            changeSchool(schools[$(this).attr('id')]);
+                        });
+                        count = count + 1;
+                        $('.list-group').append($school);
+
+                        if (userLoc != null) {
+                            schoolItem.distance = distance(
+                                schoolItem.lat,
+                                schoolItem.lon,
+                                userLoc.coords.latitude,
+                                userLoc.coords.longitude);
+                        }
+                        else {
+                            schoolItem.distance = 0;
+                        }
+                        schools.push(schoolItem);
                     });
-                    count = count + 1;
-                    $('.list-group').append($school);
-
-                    if (userLoc != null) {
-                        schoolItem.distance = distance(
-                            schoolItem.lat,
-                            schoolItem.lon,
-                            userLoc.coords.latitude,
-                            userLoc.coords.longitude);
-                    }
-                    else {
-                        schoolItem.distance = 0;
-                    }
-                    schools.push(schoolItem);
-                });
-                schools.sort(function (obj1, obj2) {
-                    return obj1.distance - obj2.distance;
-                });
-                changeSchool(schools[0]);
-                currentSchool = schools[0];
-                disableInput();
-            }
-        });
+                    schools.sort(function (obj1, obj2) {
+                        return obj1.distance - obj2.distance;
+                    });
+                    changeSchool(schools[0]);
+                    currentSchool = schools[0];
+                    disableInput();
+                }
+            });
     }
 
 
@@ -196,6 +206,8 @@ window.onload = function () {
     }
 
     getLocation();
+
+    $('#modal1').modal('open');
 
     function distance(lat1, lon1, lat2, lon2) {
         var p = 0.017453292519943295;    // Math.PI / 180
