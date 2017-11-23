@@ -80,6 +80,22 @@ window.onload = function () {
         }
     });
 
+    textInput.addEventListener('focusin', function() {
+        console.log('focusin');
+        setTimeout(function(){
+            console.log($(window).height());}, 1);
+    });
+
+    textInput.addEventListener('focusout', function () {
+        console.log('focusout');
+        console.log($(window).height());
+    });
+
+    textInput.addEventListener('focus', function () {
+        console.log('focus');
+        console.log($(window).height());
+    });
+
     var Message;
     Message = function (arg) {
         this.text = arg.text, this.message_side = arg.message_side;
@@ -101,19 +117,18 @@ window.onload = function () {
     function schoolListener() {
         firebase.database().ref('/schools/').once('value').then(function (snapshot) {
                 if (snapshot.val()) {
-                    var count = 0;
                     snapshot.forEach(function (childSnapshot) {
                         var schoolItem = childSnapshot.val();
                         schoolItem.key = childSnapshot.key;
 
                         var $school = $($('.school_template').clone().html());
                         $school.css('display', 'block').html(schoolItem.name);
-                        $school.attr('id', count);
                         $school.on('click', function () {
                             changeSchool(schools[$(this).attr('id')]);
+                            console.log("Switching to: " + $(this).attr('id'));
                         });
-                        count = count + 1;
-                        $('.list-group').append($school);
+                        schoolItem.html = $school;
+                        // $('.list-group').append($school);
 
                         if (userLoc != null) {
                             schoolItem.distance = distance(
@@ -127,8 +142,14 @@ window.onload = function () {
                         }
                         schools.push(schoolItem);
                     });
+                    console.log(schools);
                     schools.sort(function (obj1, obj2) {
                         return obj1.distance - obj2.distance;
+                    });
+                    var count = 0;
+                    schools.forEach(function (t) {
+                        $('.list-group').append(t.html.attr('id', count));
+                        count = count + 1;
                     });
                     changeSchool(schools[0]);
                     currentSchool = schools[0];
@@ -142,6 +163,8 @@ window.onload = function () {
         getLocation();
         if (currentSchool == null || (school.path != currentSchool.path)) {
             currentSchool = school;
+            console.log(school.name + ' Heatchat');
+            $("#title").html(school.name + ' Heatchat');
             var ul = document.getElementById('message_window');
             if (ul) {
                 while (ul.firstChild) {
@@ -207,7 +230,7 @@ window.onload = function () {
 
     getLocation();
 
-    $('#modal1').modal('open');
+
 
     function distance(lat1, lon1, lat2, lon2) {
         var p = 0.017453292519943295;    // Math.PI / 180
@@ -218,4 +241,22 @@ window.onload = function () {
 
         return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
     }
+
+    $(".button-collapse").sideNav({
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: true,
+        draggable: true
+    });
+
+    $(document).ready(function () {
+        console.log($(window).height());
+        $('#modal1').modal('open');
+        $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
+        textInput.focus();
+        postButton.focus()
+    });
+
+    $(window).on('resize', function () {
+        $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
+    });
 };

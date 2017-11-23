@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="res/favicon.png">
+    <link rel="icon" href="res/ic_chat_black_48px.png">
     <title>Heatchat</title>
 
     <link rel="stylesheet" href="css/styles.css">
@@ -48,7 +48,7 @@
         <div class="nav-wrapper">
             <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i
                     class="material-icons">menu</i></a>
-            <a class="brand-logo truncate" href="#!">Heatchat</a>
+            <a class="brand-logo truncate" href="#" id="title">Heatchat</a>
 
             <ul class="right">
                 <li><a href="https://ttsd4.app.goo.gl/crwp"><i class="material-icons">phone_iphone</i></a></li>
@@ -79,19 +79,30 @@
 
         </ul>
         <footer class="footer">
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s9 valign-wrapper hoverable">
-                            <textarea id="message_input" class="materialize-textarea form-control input-field"></textarea>
-                            <!--<label id="inputLabel" for="message_input">Enter a message.</label>-->
-                        </div>
-                        <div class="col s3 input-field send_button valign-wrapper">
-                            <span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>
-                        </div>
+            <!--<div class="row">-->
+            <!--<form class="col s12">-->
+            <!--<div class="row">-->
+            <!--<div class="col s9 valign-wrapper hoverable">-->
+            <!--&lt;!&ndash;<input id="message_input" class="form-control input-field class s12">&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="col s3 input-field send_button valign-wrapper">-->
+            <!--<span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</form>-->
+            <!--</div>-->
+            <form action="#">
+
+                <div class="valign-wrapper hoverable row">
+                    <div class="col s9">
+                        <textarea id="message_input" class="materialize-textarea input-field form-control"></textarea>
+                        <label for="message_input">Enter a Message</label>
                     </div>
-                </form>
-            </div>
+                    <div class="col s3">
+                        <span class="input-group-addon btn btn-primary send_message" id="send_message">&gt;</span>
+                    </div>
+                </div>
+            </form>
         </footer>
     </main>
 
@@ -133,23 +144,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 <script src="js/message.js"></script>
-
-<script>
-    $(".button-collapse").sideNav({
-        edge: 'left', // Choose the horizontal origin
-        closeOnClick: true,
-        draggable: true
-    });
-
-    $(document).ready(function () {
-        $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
-    });
-
-    $(window).on('resize', function () {
-        $('.message_window').height($(window).height() - $('.footer').height() - $('.nav-wrapper').height());
-    });
-</script>
-
 <script>
     $(function () {
         $('body').bootstrapMaterialDesign();
